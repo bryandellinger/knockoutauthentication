@@ -1,0 +1,86 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href="content/css/site.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+    <title>Owin Authentication</title>
+	<meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <style>
+        .myalert-box{
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 1px solid transparent;
+            border-radius: 4px;
+        }
+        .mysuccess{
+            color: #3c763d;
+            background-color: #dff0d8;
+            border-color: #d6e9c6;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation" data-ng-controller="indexController">
+        <div class="container">
+            <div class="navbar-header">
+                <button class="btn btn-success navbar-toggle" data-ng-click="navbarExpanded = !navbarExpanded">
+                    <span class="glyphicon glyphicon-chevron-down"></span>
+                </button>
+                <a class="navbar-brand" href="#/">
+                    Home &nbsp;<i class="fa fa-spinner fa-spin" id="spinner3"></i>
+                </a>
+            </div>
+            <div class="collapse navbar-collapse" data-collapse="!navbarExpanded">
+                <ul class="nav navbar-nav navbar-right">
+                    <li data-bind="visible: isAuth"><a href="#start">Welcome <span data-bind="text: userName"></span> </a></li>
+                    <li data-bind="visible: isAuth"><a href="#orders" data-bind="click: getOrders">My Orders</a></li>
+                    <li data-bind="visible: isAuth"><a href="#start" data-bind="click: logout">Logout</a></li>
+                    <li data-bind="visible: !isAuth()"> <a href="#login"><span id="loginLabel" style="display: none;">Login</span></a></li>
+                    <li data-bind="visible: !isAuth()"> <a href="#signup"><span id="signUpLabel" style="display: none;">Sign Up</span></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div data-bind="page: {id: 'start', title: 'Pager.js Demo Start'}">
+        <home-page></home-page>
+    </div>
+    <!----------------------------------------------------------------------------------------------------------------------------------->
+    <div data-bind="page: {id: 'orders', title: 'My Orders'}">
+        <orders params="{orders: orders}"></orders>
+    </div>
+
+    <!----------------------------------------------------------------------------------------------------------------------------------->
+    <div data-bind="page: {id: 'login', title: 'Log In'}">
+        <log-on params="{userName: userName, password: password, isAuth: isAuth, token: token}"></log-on>
+    </div>
+    <!----------------------------------------------------------------------------------------------------------------------------------->
+    <!----------------------------------------------------------------------------------------------------------------------------------->
+    <div data-bind="page: {id: 'signup', title: 'Sign Up'}">
+        <sign-up params="{userName: userName, password: password, confirmPassword: confirmPassword}"></sign-up>
+    </div>
+    <!----------------------------------------------------------------------------------------------------------------------------------->
+    <!-- Load third party javascript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.2/knockout-min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout.mapping/2.4.1/knockout.mapping.min.js"></script>
+    <script src="app/pager.js"></script>
+
+    <!-- Load app main script -->
+    <script src="app/components/home-page.js"></script>
+    <script src="app/components/signup-page.js"></script>
+    <script src="app/components/logon-page.js"></script>
+    <script src="app/components/orders-page.js"></script>
+    <script src="app/app.js"></script>
+    <!-- Load services -->
+    <!-- Load components -->
+
+
+
+</body>
+</html>
